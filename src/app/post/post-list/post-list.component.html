@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header">
+    <button [routerLink]="['/posts/retrieve/new']" class="btn btn-info">Add New Post</button>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th class="">Title</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of posts;let i=index;">
+            <td>{{i+1}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.description}}</td>
+            <td>{{p.category}}</td>
+            <td>
+              <a [routerLink]="['/posts/retrieve/',p.$key]" class="btn btn-success">Edit</a>
+              <a (click)="edit(p)" class="btn btn-info">Details</a>
+              <button (click)="delete(p)" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,57 @@
+<!-- <app-category-form-modal 
+[parentCategories]="parentCategories"
+[category]="category"
+[isActive]="isActiveModal"></app-category-form-modal> -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Category Update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form #form="ngForm" (ngSubmit)="Save()">
+          <div class="form-group">
+            <label for="categoryName">Category Name</label>
+              <input [(ngModel)]="category.categoryName" id="categoyName" class="form-control" placeholder="Category Name" name="categoryName">
+          </div>
+          <!-- <div class="form-group">
+              <label for="parent">Select Parent Category </label>
+                <select [(ngModel)]="category.parent" id="categoyName" class="form-control" placeholder="Category Name" name="categoryName">
+                  <option value="null">Category is Parent</option>
+                  <option *ngFor="let c of categories" [value]="c.$key">{{c.categoryName}}</option>
+                </select>
+            </div> -->
+        </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="save(form.value)">Save</button>
+  </div>
+</ng-template>
+<div class="card">
+  <div class="card-header">
+  <button (click)="open(content)" class="btn btn-info">Add New Category</button>
+  </div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th class="">Category Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of categories;let i=index;">
+          <td>{{i+1}}</td>
+          <td>{{c.categoryName}}</td>
+          <td>
+            <button (click)="edit(c,content)" class="btn btn-success">Edit</button>
+            <button (click)="delete(c)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div *ngIf="post" class="card">
+    <div class="card-body">
+        <div class="blog-post box-shadow">
+            <h2 class="blog-post-title">{{post.title}}</h2>
+            <p class="blog-post-meta">{{post.createdDate}} // Last Update : {{post.updatedDate}} by <a href="/profile/{{post.owner}}">{{post.owner}}</a></p>
+            <p>{{post.description}}</p>
+            <hr>
+            <p [innerHTML]="post.article"></p>
+        </div>
+    </div>
+</div>
+<hr>
